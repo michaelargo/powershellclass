@@ -22,41 +22,77 @@ function read-menu
         
     $valid = $false
 
-    while ($valid -eq $false)
-
-    {    
+   
         $option = read-host -prompt "Please enter an option: _"
 
         switch ($option)
         {
         
-        '1' { write-host "You selected Play"
-              $valid = $true
-              break }
-        '2' { write-host "You selected Settings"
-              $valid = $true
-              break }
-        '3' { write-host "You selected Instructions" 
-              $valid = $true
-              break }
-        'Q' { write-host "You selected Quit"
-              $valid = $true
-              break }
+        '1' { write-host "You selected Play"}
 
-        default { write-host "You selected an invalid option" 
-                  show-menu
-                  $option = read-menu }
+        '2' { write-host "You selected Settings"}
+
+        '3' { write-host "You selected Instructions" }
+
+        'Q' { write-host "You selected Quit"}
+
+
+        default { write-host "You selected an invalid option" }
         }
-    }
+
+    
 
     return $option
 
 }
 
+function validate-option
+{
+    $valid = $false
+
+    param (
+        [string]$option.ToUpper()
+    )
+
+    if ($option -eq "1") {
+        $valid = $true
+    }
+
+    if ($option -eq "2") {
+        $valid = $true
+    }
+
+    if ($option -eq "3") {
+        $valid = $true
+    }
+
+    if ($option -eq "Q") {
+        $valid = $true
+    }
+
+    else  {
+        
+        $valid = $false
+    }
+
+    return $valid
+
+}
+
+Clear-Host
+show-menu
 
 $option = read-menu
 
-validate-option $option
+$valid = validate-option $option
+
+while ($valid -eq $false) {
+
+    show-menu
+    $option = read-menu
+    $valid = validate-option $option
+
+}
 
 write-host "You selected $option"
 
