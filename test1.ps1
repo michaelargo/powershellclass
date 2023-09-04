@@ -11,6 +11,7 @@ function getPlayerInput() {
         $playerInput = read-host -prompt "You walk into a room with two doorwarys. One to the left and one to the right. Type 'left' or 'right' to walk through one of the doors."
 
             if ($playerInput -eq "left") {
+
                 $proceed = $true
                 break
 
@@ -36,7 +37,6 @@ function getPlayerInput() {
 
 
 $playerInput = getPlayerInput
-
 
 write-host "You entered" $playerInput
 
