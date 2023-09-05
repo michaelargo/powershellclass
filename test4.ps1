@@ -15,7 +15,7 @@ function show-menu
 
 }
 
-function read-menu
+function read-option
 {
 
     write-host
@@ -48,11 +48,14 @@ function read-menu
 
 function validate-option
 {
-    $valid = $false
-
+    
     param (
-        [string]$option.ToUpper()
+        [string]$option
     )
+
+    $option = $option.ToUpper()
+    
+    $valid = $false
 
     if ($option -eq "1") {
         $valid = $true
@@ -79,10 +82,10 @@ function validate-option
 
 }
 
-Clear-Host
+clear-host
 show-menu
 
-$option = read-menu
+$option = read-option
 
 $valid = validate-option $option
 
