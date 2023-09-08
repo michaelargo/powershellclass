@@ -1,12 +1,11 @@
+
 function show-menu
 {
 
-    param (
-        [string]$Title = 'Menu Options'
-    )
+
     clear-host
 
-    Write-Host "================ $Title ================"
+    Write-Host "================ Game Options ================"
     
     Write-Host "1: Press '1' to Play"
     Write-Host "2: Press '2' for Settings"
@@ -20,10 +19,8 @@ function read-option
 
     write-host
         
-    $valid = $false
-
-   
-        $option = read-host -prompt "Please enter an option: _"
+     
+        $option = read-host "Please enter an option: _"
 
         switch ($option)
         {
@@ -39,7 +36,8 @@ function read-option
 
         default { write-host "You selected an invalid option" }
         }
-
+        
+    read-host
     
 
     return $option
@@ -82,7 +80,6 @@ function validate-option
 
 }
 
-clear-host
 show-menu
 
 $option = read-option
@@ -92,8 +89,13 @@ $valid = validate-option $option
 while ($valid -eq $false) {
 
     show-menu
-    $option = read-menu
+    $option = read-option
     $valid = validate-option $option
+
+    if ($valid -eq $true)
+    {
+        break
+    }
 
 }
 
